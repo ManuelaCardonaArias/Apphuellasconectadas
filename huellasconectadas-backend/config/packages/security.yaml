@@ -1,0 +1,87 @@
+security:
+    # ----------------------------------------------------------------------
+    # 1. HASHING DE LA CONTRASENYA
+    # ----------------------------------------------------------------------
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+    # ----------------------------------------------------------------------
+    # 2. DEFINICIÓN DEL PROVEEDOR DE USUARIOS
+    # ----------------------------------------------------------------------
+    providers:
+        # Proveedor principal: apunta a tu Entidad de Usuario
+        app_user_provider:
+            entity:
+                class: App\Entity\Usuario
+                property: email # Utiliza el email como nombre de usuario
+
+    # ----------------------------------------------------------------------
+    # 3. FIREWALLS (DÓNDE Y CÓMO SE APLICA LA SEGURIDAD)
+    # ----------------------------------------------------------------------
+    firewalls:
+        # Firewall para herramientas de desarrollo
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        # FIREWALL 1: LOGIN (OBTENCIÓN DEL TOKEN JWT)
+        login:
+            pattern: ^/login
+            stateless: true 
+            provider: app_user_provider
+            
+            # Utiliza la autenticación JSON para recibir email y password
+            json_login:
+                check_path: /login
+                username_path: email
+                password_path: password
+                # Handlers automáticos proporcionados por el LexikJWTBundle
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        # FIREWALL 2: API PROTEGIDA (USO DEL TOKEN)
+        api:
+            # El patrón cubre todas las rutas API y 'add'
+            pattern: ^/(api|add|donar) 
+            stateless: true
+            lazy: true # Habilita el manejo de anónimos (permite que getUser() sea null)
+            provider: app_user_provider
+            # Utiliza el Token JWT para autenticar
+            jwt: ~
+
+    # ----------------------------------------------------------------------
+    # 4. CONTROL DE ACCESO (PROTECCIÓN DE RUTAS)
+    # ----------------------------------------------------------------------
+    access_control:
+        # 1. CORS: Permitir OPTIONS para todas las rutas API/Donar
+        - { path: ^/(api|add|donar), methods: [OPTIONS], roles: PUBLIC_ACCESS }
+        
+        # 2. Rutas de Donación: Acceso público, pero el firewall procesará el JWT si se envía
+        - { path: ^/donar, roles: PUBLIC_ACCESS }
+        - { path: ^/donar/confirmar, roles: PUBLIC_ACCESS } # <-- CORREGIDO: Permite anónimos para que la lógica del controlador decida.
+        
+        # 3. Acceso público a Login y Mascota GET
+        - { path: ^/login, roles: PUBLIC_ACCESS } 
+        - { path: ^/api/reset-password-request, roles: PUBLIC_ACCESS }
+        - { path: ^/api/reset-password, roles: PUBLIC_ACCESS }
+        - { path: ^/api/mascotas/\d+$, methods: [GET], roles: PUBLIC_ACCESS }
+        
+        # 4. Rutas protegidas
+        - { path: ^/add, roles: ROLE_PROTECTORA }
+        - { path: ^/protectora, roles: ROLE_PROTECTORA } 
+        - { path: ^/profile, roles: ROLE_USER }
+
+        # 5. Regla general para el resto del API (debe ir al final)
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY } 
+
+# ----------------------------------------------------------------------
+# BLOC PARA TESTING
+# ----------------------------------------------------------------------
+when@test:
+    security:
+        password_hashers:
+            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+                algorithm: auto
+                cost: 4
+                time_cost: 3
+                memory_cost: 10

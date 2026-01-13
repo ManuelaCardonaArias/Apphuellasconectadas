@@ -1,0 +1,978 @@
+/* -------------------------------------------
+ * Estils de la Pàgina de Detall del Gos (dog_detail.css)
+ * Versió ULTRA COMPACTA
+ * Adaptado al MODO OSCURO con variables de style_general.css
+ * ------------------------------------------- */
+
+/* Contenidor Principal */
+.detail-container {
+    width: 95%;
+    max-width: 1000px; /* AJUSTADO: Limitado para que no se expanda tanto */
+    margin: 60px auto 20px auto; /* AJUSTADO: Menos margen superior */
+    padding: 0 10px; 
+    min-height: calc(100vh - 100px); 
+    box-sizing: border-box;
+    font-family: var(--font-family-primary);
+    position: relative;
+    color: var(--color-text-dark); 
+}
+
+/* --- FIX PER AL MODAL (POP-UP) --- */
+.detail-container.modal-mode {
+    width: 100% !important; 
+    max-width: 100% !important;
+    margin: 0 auto !important; 
+    min-height: auto !important; 
+    padding: 0 !important;
+}
+
+/* Eliminem ombres dobles dins del modal */
+.modal-mode .dog-content-grid {
+    box-shadow: none;
+    border: none;
+    margin-top: 50px !important; 
+}
+
+/* -------------------------------------------
+ * Layout Principal (Grid)
+ * ------------------------------------------- */
+.dog-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr; /* AJUSTADO: Proporción */
+    gap: 25px; /* AJUSTADO: Reducido de 40px */
+    background-color: var(--color-header-bg);
+    border-radius: 8px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--color-separator);
+    padding: 20px; /* AJUSTADO: Reducido de 30px */
+    overflow: visible; 
+    position: relative; 
+}
+
+/* -------------------------------------------
+ * ESTIL PER AL BOTÓ DE TANCAMENT (X)
+ * ------------------------------------------- */
+.modal-close-x {
+    position: absolute;
+    top: 10px; 
+    right: 10px;
+    width: 32px; 
+    height: 32px;
+    border-radius: 25px;
+    background-color: var(--color-header-bg); 
+    border: 1px solid var(--color-separator); 
+    color: var(--color-text-dark); 
+    opacity: 0.7;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1010;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.modal-close-x:hover {
+    background-color: #fef2f2; 
+    color: #ef4444;
+    border-color: #fecaca;
+    transform: rotate(0deg); /* Animación suave al cerrar */
+}
+body.dark-mode .modal-close-x:hover {
+    background-color: #3b2023; 
+    color: #ff7881;
+    border-color: #3b2023;
+}
+
+/* -------------------------------------------
+ * Secció d'Informació (Columna Dreta - Text)
+ * ------------------------------------------- */
+.info-section {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-section h3 {
+    font-size: 1.5rem; /* AJUSTADO: Reducido de 2rem */
+    color: var(--color-secondary);
+    margin: 0;
+    font-weight: 800;
+}
+
+.description-text {
+    font-size: 0.95rem; 
+    line-height: 1.5; 
+    color: var(--color-text-dark);
+    border-bottom: 1px dashed var(--color-separator);
+    padding-bottom: 10px; 
+    margin-bottom: 15px; 
+}
+
+h4 {
+    font-size: 0.9rem; 
+    color: var(--color-primary);
+    margin-top: 0;
+    margin-bottom: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Admin Actions */
+.admin-actions {
+    background-color: var(--color-background);
+    border: 1px solid var(--color-separator);
+    border-radius: 8px;
+    padding: 10px; 
+    margin-bottom: 15px;
+}
+
+.admin-actions h4 {
+    border-bottom: 1px solid var(--color-separator);
+    padding-bottom: 5px;
+    margin-bottom: 8px;
+    color: var(--color-text-dark);
+    opacity: 0.8;
+}
+
+.admin-actions > div { display: flex; gap: 10px; }
+
+.cta-button-detail {
+    padding: 8px 12px; 
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem; 
+}
+
+.cta-button.secondary-cta { 
+    background-color: #3b82f6; 
+    color: white; 
+}
+.cta-button.danger-cta { 
+    background-color: #ef4444; 
+    color: white; 
+}
+
+/* Protectora Box */
+.data-box-protectora {
+    padding: 15px; /* AJUSTADO: Reducido de 25px */
+    background-color: var(--color-background); 
+    border: 1px solid var(--color-separator); 
+    border-radius: 8px;
+    margin-bottom: 0px;
+}
+body.dark-mode .data-box-protectora {
+    background-color: #30302f; 
+    border-color: #fcd34d;
+}
+
+.data-box-protectora h4 { 
+    color: var(--color-primary); 
+    margin-top: 0; 
+    border-bottom: none; 
+    font-size: 1rem; 
+    margin-bottom: 5px; 
+}
+body.dark-mode .data-box-protectora h4 {
+    color: #c56b26; 
+}
+
+
+.data-box-protectora p { 
+    margin: 4px 0; 
+    color: var(--color-text-dark); 
+    font-size: 0.9rem; 
+}
+.italic { 
+    font-style: italic; 
+    color: var(--color-text-dark); 
+    opacity: 0.6; 
+}
+
+/* Tags */
+.temperament-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0; }
+.tag { 
+    background-color: var(--color-header-bg); 
+    border: 1px solid var(--color-separator); 
+    color: var(--color-secondary); 
+    padding: 5px 10px; 
+    border-radius: 20px; 
+    font-weight: 600; 
+    font-size: 0.85rem; 
+}
+
+/* -------------------------------------------
+ * Secció d'Imatge + Header (Columna Esquerra)
+ * ------------------------------------------- */
+.image-section {
+    order: 1;
+    position: relative;
+    height: 100%; 
+}
+
+/* CONTENIDOR STICKY */
+.sticky-wrapper {
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 60px; /* AJUSTADO: Más arriba */
+    transform: none;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;
+}
+
+.dog-detail-image {
+    width: 100%;
+    max-height: 280px; /* AJUSTADO: Reducido drásticamente de 400px */
+    object-fit: cover; 
+    border-radius: 8px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-separator);
+}
+
+/* HEADER (SOTA LA IMATGE) */
+.detail-header-side {
+    margin-top: 15px; 
+    text-align: center;
+    width: 100%;
+}
+
+/* Título flex para acomodar el botón de compartir */
+.detail-header-side h1 {
+    font-size: 1.8rem;
+    color: var(--color-secondary);
+    margin: 0;
+    line-height: 1.1;
+    font-weight: 800;
+    display: inline-block; /* Para alinearse con status y share */
+}
+
+/* BOTÓN DE COMPARTIR - NUEVO ESTILO */
+.share-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-light);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 8px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    position: relative; /* Para el tooltip */
+    vertical-align: middle;
+}
+
+.share-button:hover {
+    color: var(--color-primary);
+    background-color: rgba(var(--color-primary-rgb), 0.1); /* Sutil fondo al hover */
+    transform: scale(1.1);
+}
+
+/* Tooltip CSS puro para el botón compartir */
+.share-button[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    margin-bottom: 8px;
+    animation: fadeInTooltip 0.2s forwards;
+    z-index: 100;
+}
+
+@keyframes fadeInTooltip {
+    from { opacity: 0; transform: translate(-50%, 5px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.dog-status {
+    font-size: 0.8rem; 
+    font-weight: 700;
+    color: var(--color-primary);
+    background-color: var(--color-background); 
+    padding: 3px 8px; 
+    border-radius: 6px;
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid var(--color-separator);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.dog-status.status-Adoptado {
+    background-color: #ef4444; 
+    color: white;
+    border-color: #dc2626;
+}
+body.dark-mode .dog-status.status-Adoptado {
+     background-color: #991b1b;
+}
+
+.dog-status.status-Reservado {
+    background-color: #fcd34d; 
+    color: #92400E; 
+    border-color: #D97706;
+}
+body.dark-mode .dog-status.status-Reservado {
+    background-color: #d97706; 
+    color: white;
+}
+
+
+.dog-specs-detail {
+    font-size: 0.95rem; 
+    color: var(--color-text-dark); 
+    font-weight: 500;
+    margin: 5px 0 0 0;
+    opacity: 0.8;
+}
+
+/* Botó Reserva */
+.reservation-button {
+    width: 100%;
+    padding: 12px; /* AJUSTADO: Reducido de 16px */
+    font-size: 1rem; 
+    margin-top: 15px; 
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.2s;
+    font-weight: 700;
+    box-shadow: 0 3px 8px rgba(137, 176, 174, 0.3);
+}
+.reservation-button:hover:not(:disabled) { 
+    background-color: var(--color-secondary); 
+    cursor: pointer; 
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+.reservation-button:disabled { 
+    background-color: var(--color-separator); 
+    color: var(--color-text-dark);
+    opacity: 0.6;
+    cursor: not-allowed; 
+    box-shadow: none; 
+    transform: none; 
+}
+body.dark-mode .reservation-button:disabled {
+    background-color: #3f3f46;
+    color: #a1a1aa;
+}
+
+/* Botón de Gestión */
+.admin-button {
+    background-color: var(--color-secondary);
+}
+
+.admin-button:hover {
+    background-color: #2c3e50;
+}
+
+.admin-button .icon-left {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+    color: white;
+}
+
+
+.back-link {
+    text-align: center;
+    display: block;
+    color: var(--color-text-dark);
+    opacity: 0.7;
+    text-decoration: none;
+    font-weight: 500;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.85rem; 
+    margin-top: 5px;
+}
+.back-link:hover { color: var(--color-secondary); opacity: 1; }
+
+/* Cola de espera */
+.queue-management {
+    display: flex; 
+    flex-direction: column; 
+    gap: 6px; 
+    padding: 8px 0;
+}
+.queue-position-info { 
+    margin: 0; 
+    font-size: 0.9rem; 
+    color: var(--color-text-dark); 
+    font-weight: bold; 
+}
+.leave-queue-button {
+    background: #f59e0b !important;
+    color: white !important; 
+    padding: 6px 10px !important; 
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+}
+.leave-queue-button:hover {
+    background: #d97706 !important;
+}
+
+
+/* -------------------------------------------
+ * ESTIL DEL AVISO DE RESERVA 
+ * ------------------------------------------- */
+.reservation-notice {
+    background-color: #FFFBEB; 
+    border: 2px solid #FCD34D; 
+    padding: 10px 10px 10px 20px; 
+    border-radius: 6px;
+    margin: 15px 0 10px 0; 
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+    box-shadow: inset 0 0 10px rgba(252, 211, 77, 0.5); 
+    position: relative;
+    overflow: hidden;
+}
+
+.reservation-notice::before {
+    content: "!";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px; 
+    height: 100%;
+    background-color: #D97706; 
+    border-radius: 6px 0 0 6px;
+}
+
+.reservation-notice .notice-title {
+    font-size: 0.95rem; 
+    font-weight: 700;
+    color: #92400E; 
+    margin: 0 0 3px 0;
+}
+
+.reservation-notice .notice-text {
+    font-size: 0.85rem; 
+    color: #92400E;
+    line-height: 1.3;
+    margin: 0;
+}
+
+/* Dark Mode Overrides para el aviso de reserva */
+body.dark-mode .reservation-notice {
+    background-color: #493902; 
+    border-color: #D97706; 
+    box-shadow: inset 0 0 10px rgba(217, 119, 6, 0.5);
+}
+
+body.dark-mode .reservation-notice::before {
+    background-color: #FBBF24;
+}
+
+body.dark-mode .reservation-notice .notice-title,
+body.dark-mode .reservation-notice .notice-text {
+    color: #FBBF24; 
+}
+
+
+/* -------------------------------------------
+ * ANIMACIÓN DE CARGA (LOADING WALK) - Compacta
+ * ------------------------------------------- */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 30vh; 
+    width: 100%;
+    position: relative;
+}
+
+.loading-text {
+    margin-top: 25px; 
+    font-size: 1.2rem; 
+    color: var(--color-secondary);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    animation: textPulse 1.5s infinite ease-in-out;
+    position: relative;
+    z-index: 20; 
+}
+
+.paw-prints-loader {
+    position: relative;
+    width: 200px; 
+    height: 60px; 
+    display: flex;
+    justify-content: center;
+    transform: none; 
+}
+
+.loading-paw {
+    width: 25px; 
+    height: 25px;
+    position: absolute;
+    opacity: 0;
+    color: var(--color-primary); 
+}
+
+@keyframes walkSequenceOdd {
+    0% { opacity: 0; transform: scale(0.8) translateY(-5px) rotate(80deg); }
+    20% { opacity: 1; transform: scale(1.1) translateY(0) rotate(80deg); } 
+    40% { opacity: 1; transform: scale(1) translateY(0) rotate(80deg); }
+    100% { opacity: 0; transform: scale(0.9) translateY(-5px) rotate(80deg); } 
+}
+
+@keyframes walkSequenceEven {
+    0% { opacity: 0; transform: scale(0.8) translateY(-5px) rotate(100deg); }
+    20% { opacity: 1; transform: scale(1.1) translateY(0) rotate(100deg); } 
+    40% { opacity: 1; transform: scale(1) translateY(0) rotate(100deg); }
+    100% { opacity: 0; transform: scale(0.9) translateY(-5px) rotate(100deg); } 
+}
+
+@keyframes textPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+.loading-paw:nth-child(1) { left: 10px; top: 25px; animation: walkSequenceOdd 2.5s infinite; animation-delay: 0s; }
+.loading-paw:nth-child(2) { left: 50px; top: 5px; animation: walkSequenceEven 2.5s infinite; animation-delay: 0.5s; }
+.loading-paw:nth-child(3) { left: 90px; top: 25px; animation: walkSequenceOdd 2.5s infinite; animation-delay: 1.0s; }
+.loading-paw:nth-child(4) { left: 130px; top: 5px; animation: walkSequenceEven 2.5s infinite; animation-delay: 1.5s; }
+.loading-paw:nth-child(5) { left: 170px; top: 25px; animation: walkSequenceOdd 2.5s infinite; animation-delay: 2.0s; }
+
+
+/* -------------------------------------------
+ * NUEVOS ESTILOS: VISTA DE ADMINISTRACIÓN
+ * ------------------------------------------- */
+
+.admin-view-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; 
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-separator);
+}
+
+.admin-title {
+    font-size: 1.4rem; 
+    color: var(--color-secondary);
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+}
+
+.admin-panel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; 
+    padding: 5px 0;
+}
+
+.admin-card {
+    background-color: var(--color-header-bg);
+    padding: 15px; 
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    border: 1px solid var(--color-separator);
+}
+
+.admin-card h3 {
+    font-size: 1.1rem; 
+    margin-top: 0;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--color-separator);
+    color: var(--color-primary);
+}
+
+/* Tarjetas de Adopción (Reserva Principal) */
+.adopter-info-card {
+    padding: 10px; 
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.adopter-info-card.confirmed {
+    border: 2px solid #27ae60;
+    background-color: #d4edda;
+}
+.adopter-info-card.pending {
+    border: 2px solid #f39c12;
+    background-color: #fff3cd;
+}
+
+body.dark-mode .adopter-info-card.confirmed {
+    background-color: #1e3c24;
+    border-color: #27ae60;
+    color: #d4edda;
+}
+body.dark-mode .adopter-info-card.pending {
+    background-color: #4b3c0e;
+    border-color: #f39c12;
+    color: #ffeb95;
+}
+
+.adopter-info-card p {
+    color: var(--color-text-dark);
+    font-size: 0.9rem; 
+    margin: 4px 0;
+}
+.adopter-info-card strong {
+    color: var(--color-secondary);
+}
+
+
+.queue-list-card {
+    background-color: var(--color-header-bg);
+}
+
+.queue-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+}
+
+.queue-item {
+    display: flex;
+    align-items: center;
+    padding: 8px; 
+    border: 1px solid var(--color-separator);
+    border-radius: 6px;
+    background-color: var(--color-background);
+}
+
+.queue-number {
+    font-size: 1rem; 
+    font-weight: 700;
+    color: #f39c12; 
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.queue-adopter-details {
+    flex-grow: 1;
+}
+
+.queue-adopter-details strong {
+    display: block;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    font-size: 0.9rem;
+}
+
+.queue-adopter-details small {
+    color: var(--color-text-dark);
+    opacity: 0.8;
+    font-size: 0.8rem;
+}
+
+/* Botones de acción en Admin */
+.adopter-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.adopter-actions .btn-reject, .adopter-actions .btn-confirm {
+    padding: 6px 10px; 
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.promote-btn {
+    background-color: #10B981; 
+    color: white;
+}
+.promote-btn:hover {
+    background-color: #0c8c63;
+}
+
+
+/* -------------------------------------------
+ * Responsivitat
+ * ------------------------------------------- */
+
+@media (max-width: 1024px) {
+    .dog-content-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 0; 
+    }
+    
+    .detail-container { 
+        padding: 0 10px; 
+    }
+    
+    .admin-panel-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .sticky-wrapper {
+        position: static;
+        transform: none;
+    }
+
+    .image-section {
+        order: 1; 
+        height: auto;
+    }
+    
+    .info-section {
+        order: 2; 
+        padding: 15px; 
+    }
+
+    .dog-detail-image {
+        width: 100%;
+        max-height: 250px;
+        border-radius: 0;
+        border: none;
+    }
+    
+    .detail-header-side {
+        padding: 15px;
+        margin-top: 0;
+        background-color: var(--color-background);
+        border-bottom: 1px solid var(--color-separator);
+    }
+    
+    .modal-close-x {
+        position: absolute; 
+        top: 8px;
+        right: 8px;
+        z-index: 1020; 
+        background-color: var(--color-header-bg);
+        border: 1px solid var(--color-separator);
+        opacity: 1; 
+    }
+}
+
+
+@media (max-width: 600px) {
+    .detail-container {
+        margin-top: 60px;
+        padding: 0 5px;
+    }
+    
+    .info-section {
+        padding: 10px; 
+    }
+    
+    .info-section h3 {
+        font-size: 1.3rem; 
+    }
+
+    .detail-header-side h1 {
+        font-size: 1.5rem; 
+    }
+    
+    .dog-specs-detail {
+        font-size: 0.9rem; 
+    }
+    
+    .dog-detail-image {
+        max-height: 200px;
+    }
+    
+    .reservation-button {
+        font-size: 0.9rem; 
+        padding: 10px;
+    }
+    
+    .tag {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+    
+    .data-box-protectora {
+        padding: 10px;
+    }
+}
+/* -------------------------------------------
+ * ESTILS PER AL MODAL I ALERTES
+ * ------------------------------------------- */
+
+.delete-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+
+.delete-modal-card {
+    background: var(--color-header-bg);
+    border-radius: 12px; /* Más redondeado */
+    padding: 20px; 
+    width: 90%;
+    max-width: 380px; /* Un poco más ancho */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    transform: translateY(-5%);
+    animation: fadeInScale 0.3s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: translateY(-10%) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-5%) scale(1);
+    }
+}
+
+.delete-icon-wrapper {
+    margin: 0 auto 10px auto; 
+    width: 50px; 
+    height: 50px;
+    line-height: 50px;
+    background-color: #fef2f2;
+    border: 2px solid #fca5a5;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem; 
+}
+body.dark-mode .delete-icon-wrapper {
+    background-color: #3b2023;
+    border-color: #991b1b;
+    color: #ff7881;
+}
+
+/* --- VARIANTES DE ALERTAS (Feedback Visual) --- */
+/* ADVERTENCIA (Amarillo/Naranja) */
+.delete-icon-wrapper.icon-warning {
+    background-color: #FEF3C7;
+    border-color: #FBBF24;
+    color: #B45309;
+}
+body.dark-mode .delete-icon-wrapper.icon-warning {
+    background-color: #422006;
+    border-color: #F59E0B;
+    color: #FCD34D;
+}
+
+/* ÉXITO (Verde) - Usado al compartir */
+.delete-icon-wrapper.icon-success {
+    background-color: #D1FAE5;
+    border-color: #34D399;
+    color: #047857;
+}
+body.dark-mode .delete-icon-wrapper.icon-success {
+    background-color: #064E3B;
+    border-color: #10B981;
+    color: #6EE7B7;
+}
+
+/* INFO (Azul) */
+.delete-icon-wrapper.icon-info {
+    background-color: #EFF6FF;
+    border-color: #BFDBFE;
+    color: #1E40AF;
+}
+body.dark-mode .delete-icon-wrapper.icon-info {
+    background-color: #1E3A8A;
+    border-color: #3B82F6;
+    color: #93C5FD;
+}
+
+/* COLORES DE TEXTO EN TÍTULOS */
+.delete-modal-title {
+    font-size: 1.3rem; 
+    color: #b91c1c; /* Por defecto rojo (error) */
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+.delete-modal-title.text-warning { color: #B45309; }
+.delete-modal-title.text-success { color: #047857; } /* Verde para éxito */
+.delete-modal-title.text-info { color: #1E40AF; }
+
+body.dark-mode .delete-modal-title.text-warning { color: #FCD34D; }
+body.dark-mode .delete-modal-title.text-success { color: #6EE7B7; }
+body.dark-mode .delete-modal-title.text-info { color: #93C5FD; }
+
+
+.delete-modal-text {
+    font-size: 1rem; 
+    color: var(--color-text-dark);
+    opacity: 0.9;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.delete-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-cancel {
+    flex: 1;
+    padding: 10px; 
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+    cursor: pointer;
+    border: none;
+    background-color: var(--color-background);
+    color: var(--color-text-dark);
+    border: 1px solid var(--color-separator);
+    font-size: 0.9rem;
+}
+
+.btn-cancel:hover {
+    background-color: var(--color-separator);
+    transform: translateY(-1px);
+}
+
+.btn-confirm-delete {
+    flex: 1;
+    padding: 10px; 
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+    cursor: pointer;
+    border: none;
+    background-color: #ef4444; 
+    color: white;
+    font-size: 0.9rem;
+}
+
+.btn-confirm-delete:hover {
+    background-color: #dc2626; 
+    transform: translateY(-1px);
+}

@@ -1,0 +1,6 @@
+{
+    "require": {
+        "lexik/jwt-authentication-bundle": "^2.18",
+        "symfony/security-bundle": "^6.4"
+    }
+}

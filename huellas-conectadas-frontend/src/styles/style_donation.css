@@ -1,0 +1,352 @@
+/* -------------------------------------------
+ * Estilos de la Página de Donaciones (style_donation.css)
+ * Adaptado al MODO OSCURO y MODO COMPACTO
+ * ------------------------------------------- */
+
+.donation-page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 15px; 
+    box-sizing: border-box;
+    background-color: var(--color-background);
+    font-family: var(--font-family-primary, sans-serif);
+}
+
+.donation-card {
+    width: 100%;
+    max-width: 700px; /* AJUSTADO: Reducido de 800px */
+    background-color: var(--color-header-bg);
+    border-radius: 12px; /* AJUSTADO: de 16px */
+    padding: 35px; /* AJUSTADO: Reducido de 50px */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--color-separator);
+    position: relative;
+    box-sizing: border-box;
+    margin-top: 45px;
+}
+
+.donation-header {
+    text-align: center;
+    margin-bottom: 30px; 
+    padding-bottom: 15px;
+    border-bottom: 2px dashed var(--color-separator);
+}
+
+.donation-header h2 {
+    font-size: 1.8rem; /* AJUSTADO: Reducido de 2.2rem */
+    color: var(--color-secondary);
+    margin: 0 0 8px 0;
+    font-weight: 800;
+}
+
+.donation-header p {
+    font-size: 1rem; /* AJUSTADO: de 1.1rem */
+    color: var(--color-text-dark);
+    opacity: 0.8;
+    margin: 0;
+    max-width: 500px; 
+    margin: 0 auto;
+}
+
+.form-section-title {
+    font-size: 1.1rem; 
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin-bottom: 12px;
+    display: block;
+}
+
+/* --- GRID DE CANTIDADES --- */
+.amount-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px; /* AJUSTADO: de 15px */
+    margin-bottom: 20px;
+}
+
+.amount-btn {
+    padding: 12px 8px; /* AJUSTADO: de 15px 10px */
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem; 
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    background-color: var(--color-background); 
+    border: 2px solid transparent; 
+    color: var(--color-text-dark);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.amount-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+    background-color: var(--color-header-bg);
+}
+
+.amount-btn.selected {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-text-light); 
+    box-shadow: 0 4px 10px rgba(137, 176, 174, 0.4); 
+    transform: translateY(-2px);
+}
+
+/* --- INPUT CANTIDAD PERSONALIZADA --- */
+.custom-amount-wrapper {
+    margin-bottom: 25px; 
+}
+
+.custom-amount-wrapper label {
+    display: block;
+    font-size: 0.9rem; 
+    color: var(--color-text-dark);
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.custom-amount-input {
+    width: 100%;
+    padding: 1px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--color-separator);
+    background-color: var(--color-background); 
+    color: var(--color-text-dark);
+    font-size: 1.1rem; 
+    font-weight: 600;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.custom-amount-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: var(--color-header-bg);
+    box-shadow: 0 0 0 4px rgba(137, 176, 174, 0.2); 
+}
+
+/* --- MÉTODOS DE PAGO --- */
+.payment-methods-grid {
+    display: flex;
+    gap: 15px; /* AJUSTADO: de 20px */
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.payment-method-btn {
+    flex: 1;
+    padding: 15px; /* AJUSTADO: de 20px */
+    border-radius: 10px; 
+    font-weight: 700;
+    font-size: 0.95rem; 
+    cursor: pointer;
+    border: 2px solid var(--color-separator);
+    background-color: var(--color-header-bg);
+    color: var(--color-text-dark);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.payment-method-btn:hover {
+    background-color: var(--color-background);
+    border-color: var(--color-primary);
+}
+
+/* Estilos Activos Específicos */
+.payment-method-btn.card.active {
+    border-color: #4f46e5;
+    background-color: #eef2ff;
+    color: #4338ca;
+}
+body.dark-mode .payment-method-btn.card.active {
+    background-color: #1e1b4b; 
+    color: #a5b4fc;
+}
+
+.payment-method-btn.paypal.active {
+    border-color: #0070ba;
+    background-color: #eff6ff;
+    color: #003087;
+}
+body.dark-mode .payment-method-btn.paypal.active {
+    background-color: #0c2b4c; 
+    color: #60a5fa;
+}
+
+/* --- DETALLES DE TARJETA --- */
+.card-details-container {
+    background-color: var(--color-background); 
+    padding: 20px; /* AJUSTADO: de 25px */
+    border-radius: 10px;
+    border: 1px solid var(--color-separator);
+    margin-bottom: 25px;
+}
+
+.form-group {
+    margin-bottom: 15px; 
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem; 
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-bottom: 6px;
+}
+
+.form-input-text {
+    width: 100%;
+    padding: 10px 14px; /* AJUSTADO: de 12px 16px */
+    border-radius: 6px;
+    border: 1px solid var(--color-separator);
+    background-color: var(--color-header-bg);
+    color: var(--color-text-dark);
+    font-size: 0.95rem; 
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input-text:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(137, 176, 174, 0.2);
+}
+
+.stripe-element-container {
+    padding: 10px 14px; 
+    border: 1px solid var(--color-separator);
+    border-radius: 6px;
+    background-color: var(--color-header-bg);
+    transition: border-color 0.2s;
+}
+.stripe-element-container:hover {
+    border-color: var(--color-primary);
+}
+
+/* --- CHECKBOX ANÓNIMO --- */
+.anonymous-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    padding: 12px; 
+    background-color: var(--color-background);
+    border-radius: 8px;
+    border: 1px dashed var(--color-separator);
+}
+
+.anonymous-checkbox-wrapper input {
+    width: 18px; 
+    height: 18px;
+    margin-right: 12px;
+    cursor: pointer;
+    accent-color: var(--color-primary);
+}
+
+.anonymous-checkbox-wrapper label {
+    font-size: 0.9rem; 
+    color: var(--color-text-dark);
+    cursor: pointer;
+    user-select: none;
+}
+
+/* --- BOTÓN DE DONACIÓN --- */
+.donate-submit-btn {
+    width: 100%;
+    padding: 15px; /* AJUSTADO: de 18px */
+    border-radius: 10px;
+    font-size: 1.1rem; /* AJUSTADO: de 1.3rem */
+    font-weight: 800;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.donate-submit-btn.card-mode {
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%); 
+}
+.donate-submit-btn.card-mode:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+.donate-submit-btn.paypal-mode {
+    background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); 
+    color: white;
+}
+.donate-submit-btn.paypal-mode:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+}
+
+.donate-submit-btn:disabled {
+    background: var(--color-separator) !important;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    color: var(--color-text-dark);
+    opacity: 0.5;
+}
+
+.secure-badge {
+    text-align: center;
+    font-size: 0.8rem; 
+    color: var(--color-text-dark);
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* --- MENSAJES DE ERROR --- */
+.error-message {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    padding: 12px; 
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    border: 1px solid #fecaca;
+    font-weight: 600;
+}
+body.dark-mode .error-message {
+    background-color: #450a0a;
+    color: #fca5a5;
+    border-color: #7f1d1d;
+}
+
+/* --- RESPONSIVIDAD --- */
+@media (max-width: 768px) {
+    .donation-page-wrapper {
+        padding-top: 80px; /* AJUSTADO: menos espacio arriba */
+    }
+    
+    .donation-card {
+        padding: 24px 16px; 
+    }
+    
+    .amount-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .payment-methods-grid {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .donation-header h2 {
+        font-size: 1.5rem; 
+    }
+}

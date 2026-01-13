@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Comprobante de Donación</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+    <div style="max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px;">
+        <h1 style="color: #27ae60;">¡Donación Confirmada! 🎉</h1>
+        <p>Hola {{ nombreDonante }},</p>
+        
+           <ul style="list-style: none; padding: 0; border-left: 3px solid #ccc; margin: 20px 0; padding-left: 15px;">
+                <li style="margin-bottom: 8px;"><strong style="color: #555;">Monto:</strong> {{ monto|number_format(2, '.', ',') }} €</li>
+                <li style="margin-bottom: 8px;"><strong style="color: #555;">Método de Pago:</strong> {{ metodoPago }}</li>
+                <li style="margin-bottom: 8px;"><strong style="color: #555;">Fecha:</strong>{{ "now"|date("d/m/Y H:i:s") }}</li>
+            </ul>
+
+        </table>
+        
+        <p style="margin-top: 30px; text-align: center;">
+            <a href="http://localhost:5173/perros" style="display: inline-block; background-color: #e67e22; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+                Ver Animales que Ayudaste
+            </a>
+        </p>
+        
+        <p style="font-size: 0.8em; color: #777; margin-top: 20px;">
+            Este es un comprobante automático. Si tienes alguna pregunta, por favor contáctanos.
+        </p>
+    </div>
+</body>
+</html>

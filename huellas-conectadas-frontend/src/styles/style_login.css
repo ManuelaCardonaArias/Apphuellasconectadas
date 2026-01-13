@@ -1,0 +1,258 @@
+/* -------------------------------------------
+ * Estils de la Pàgina de Login (style_login.css)
+ * VERSIÓN MEJORADA: GLASSMORPHISM + COMPACTO
+ * Integra perfectamente con style_general.css
+ * ------------------------------------------- */
+
+/* Contenedor Principal */
+.login-content {
+    width: 100%;
+    min-height: calc(100vh - 140px); /* Resta header y footer aproximados para centrado óptimo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Tarjeta del Formulario (Efecto Vidrio) */
+.login-card {
+    margin-top: 40px;
+    background: var(--color-header-bg); /* Usa el fondo semitransparente definido en general */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-separator);
+    border-radius: 16px; /* Borde más suave */
+    box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.1); /* Sombra difusa y elegante */
+    
+    width: 100%;
+    max-width: 420px; /* Ancho ideal para lectura y foco */
+    padding: 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Para contener efectos internos */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Decoración sutil superior */
+.login-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-primary-dark));
+}
+
+.login-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 45px -5px rgba(0, 0, 0, 0.15);
+}
+
+/* Título */
+.login-card h2 {
+    font-size: 1.75rem;
+    color: var(--color-text-dark);
+    margin-bottom: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+/* Mensajes de Alerta */
+.login-message {
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.error-message {
+    background-color: rgba(254, 242, 242, 0.9);
+    color: #991B1B;
+    border: 1px solid rgba(254, 202, 202, 0.5);
+}
+body.dark-mode .error-message {
+    background-color: rgba(60, 20, 20, 0.8);
+    color: #ff8fa3;
+    border-color: rgba(153, 27, 27, 0.4);
+}
+
+.success-message {
+    background-color: rgba(236, 253, 245, 0.9);
+    color: #065F46;
+    border: 1px solid rgba(167, 243, 208, 0.5);
+}
+body.dark-mode .success-message {
+    background-color: rgba(6, 70, 50, 0.8);
+    color: #a7f3d0;
+    border-color: rgba(6, 95, 70, 0.4);
+}
+
+/* Grupos de Formulario */
+.login-group {
+    text-align: left;
+    margin-bottom: 20px;
+    width: 100%; /* Asegura que el grupo ocupe todo el ancho */
+}
+
+.login-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--color-text-medium);
+    font-size: 0.85rem;
+    margin-left: 2px;
+}
+
+.login-group input {
+    width: 100%;
+    padding: 10px 14px;
+    background-color: rgba(255, 255, 255, 0.5); 
+    border: 1px solid var(--color-separator);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--color-text-dark);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* [CORRECCIÓN CRÍTICA] Evita que el padding aumente el ancho total */
+    box-sizing: border-box; 
+}
+
+body.dark-mode .login-group input {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.login-group input:focus {
+    background-color: var(--color-background);
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(137, 176, 174, 0.25);
+}
+
+.login-group input::placeholder {
+    color: var(--color-text-medium);
+    opacity: 0.6;
+}
+
+/* --- NUEVOS ESTILOS PARA EL WRAPPER DE CONTRASEÑA --- */
+.password-input-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* El input dentro del wrapper debe dejar espacio a la derecha para el icono */
+.password-input-wrapper input {
+    padding-right: 40px !important; /* !important para asegurar prioridad sobre estilos genéricos */
+}
+
+/* Botón del ojo */
+.password-toggle-btn {
+    position: absolute;
+    right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-medium);
+    transition: color 0.2s ease;
+    z-index: 5;
+    outline: none;
+}
+
+.password-toggle-btn:hover {
+    color: var(--color-primary);
+}
+
+.password-toggle-btn:focus {
+    color: var(--color-primary);
+}
+/* ---------------------------------------------------- */
+
+/* Botón Submit (Estilo Gradiente Principal) */
+.button-submit {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(137, 176, 174, 0.3);
+}
+
+.button-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(137, 176, 174, 0.5);
+    filter: brightness(1.05);
+}
+
+.button-submit:active {
+    transform: translateY(0);
+}
+
+.button-submit:disabled {
+    background: var(--color-separator);
+    color: var(--color-text-medium);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Footer del Formulario (Enlaces) */
+.form-footer {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: var(--color-text-medium);
+}
+
+.text-link {
+    color: var(--color-primary-dark);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.text-link:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+/* Responsividad */
+@media (max-width: 480px) {
+    .login-content {
+        align-items: flex-start; /* En móvil, mejor arriba */
+        padding-top: 40px;
+    }
+    
+    .login-card {
+        padding: 2rem 1.5rem;
+        border: none;
+        background: transparent; /* En pantallas muy pequeñas, quitamos la caja para limpiar */
+        box-shadow: none;
+    }
+    .login-card::before { display: none; } /* Quitamos la barra superior en modo simple */
+
+    .login-card h2 {
+        font-size: 1.5rem;
+    }
+}

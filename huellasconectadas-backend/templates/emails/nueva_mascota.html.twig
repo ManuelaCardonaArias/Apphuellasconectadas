@@ -1,0 +1,71 @@
+{# templates/emails/nueva_mascota.html.twig #}
+{% set petName = mascota.nombre|length > 0 ? mascota.nombre : 'una nueva mascota' %}
+{% set userName = usuario.nombre|split(' ')|first %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Nueva Mascota en Adopción!</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+
+    <div style="max-width: 600px; margin: 20px auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        
+        {# Header #}
+        <div style="background-color: #fcebc8; color: #555B6E; padding: 20px; text-align: center; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+            <h1 style="margin: 0; font-size: 24px;">¡Nueva Oportunidad de Adopción!</h1>
+        </div>
+        
+        {# Body Content #}
+        <div style="padding: 30px;">
+            <p style="font-size: 16px; color: #333;">Hola {{ userName }},</p>
+            
+            <p style="font-size: 16px; color: #333;">Queremos informarte que una nueva mascota ha sido registrada por una de nuestras protectoras y está esperando encontrar un hogar.</p>
+            
+            {# INICIO: IMAGEN DE LA MASCOTA #}
+            {# Lógica modificada para soportar incrustación CID #}
+            {% if cid_image is defined and cid_image %}
+                 {# PRIORIDAD 1: IMAGEN INCRUSTADA (Funciona en Gmail + Localhost) #}
+                <div style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
+                    <img src="cid:{{ cid_image }}" alt="Foto de {{ petName }}" 
+                         style="max-width: 100%; height: auto; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: block; margin: 0 auto;">
+                </div>
+            {% elseif mascota.imagenes is not empty %}
+                 {# PRIORIDAD 2: FALLBACK URL EXTERNA (Por si acaso) #}
+                {% set imageUrl = mascota.imagenes[0] is defined ? mascota.imagenes[0] : null %}
+                {% if imageUrl %}
+                <div style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
+                    <img src="{{ imageUrl }}" alt="Foto de {{ petName }}" 
+                         style="max-width: 100%; height: auto; max-height: 250px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: block; margin: 0 auto;">
+                </div>
+                {% endif %}
+            {% endif %}
+            {# FIN: IMAGEN DE LA MASCOTA #}
+            
+            <h2 style="color: #4CAF50; margin-top: 20px;">{{ petName }}</h2>
+            
+            <ul style="list-style: none; padding: 0; border-left: 3px solid #ccc; margin: 20px 0; padding-left: 15px;">
+                <li style="margin-bottom: 8px;"><strong style="color: #555;">Especie:</strong> {{ mascota.especie }}</li>
+                <li style="margin-bottom: 8px;"><strong style="color: #555;">Raza:</strong> {{ mascota.raza }}</li>
+                <li style="margin-bottom: 8px;"><strong style="color: #555;">Edad:</strong> {{ mascota.edad }} años</li>
+            </ul>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="{{ petLink }}" 
+                   style="background-color: #FF9800; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+                    Ver Perfil de {{ petName }}
+                </a>
+            </div>
+            
+            <p style="margin-top: 30px; font-size: 14px; color: #777;">Si ya has adoptado o no estás interesado, por favor, ignora este correo. ¡Gracias por tu apoyo!</p>
+        </div>
+        
+        {# Footer #}
+        <div style="background-color: #555B6E; padding: 15px; text-align: center; font-size: 12px; color: #777; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
+            © Huellas Conectadas. Notificación automática.
+        </div>
+    </div>
+</body>
+</html>

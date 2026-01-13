@@ -1,0 +1,12 @@
+# Node
+huellas-conectadas-frontend/node_modules
+huellas-conectadas-frontend/dist
+
+# Symfony
+huellasconectadas-backend/vendor
+huellasconectadas-backend/var
+huellasconectadas-backend/.env.local
+
+# General
+.env
+.DS_Store

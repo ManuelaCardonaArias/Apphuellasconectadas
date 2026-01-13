@@ -1,0 +1,34 @@
+framework:
+    messenger:
+        failure_transport: failed
+
+        transports:
+            # https://symfony.com/doc/current/messenger.html#transport-configuration
+            async:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    use_notify: true
+                    check_delayed_interval: 60000
+                retry_strategy:
+                    max_retries: 3
+                    multiplier: 2
+            failed: 'doctrine://default?queue_name=failed'
+            
+            # --- CAMBIO 1: Descomentar o añadir el transporte sync ---
+            sync: 'sync://'
+
+        default_bus: messenger.bus.default
+
+        buses:
+            messenger.bus.default: []
+
+        routing:
+            # --- CAMBIO 2: Enviar correos por el transporte 'sync' (al instante) ---
+            Symfony\Component\Mailer\Messenger\SendEmailMessage: sync
+            
+            # Puedes dejar estos en async o pasarlos a sync si tampoco quieres esperar por ellos
+            Symfony\Component\Notifier\Message\ChatMessage: async
+            Symfony\Component\Notifier\Message\SmsMessage: async
+
+            # Route your messages to the transports
+            'App\Message\NewPetNotification': sync

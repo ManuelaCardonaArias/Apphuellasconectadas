@@ -1,0 +1,1234 @@
+/* * Estilos para el Perfil de Usuario y el Menú Desplegable
+ * Adaptado al MODO OSCURO y ULTRA COMPACTO
+ */
+
+/* Contenidor que permet posicionar el menú desplegable */
+.profile-dropdown-container {
+    position: relative;
+}
+
+/* -------------------------------------- */
+/* 1. Indicador del Perfil (Botó a la Nav) */
+/* -------------------------------------- */
+
+.profile-indicator-button {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.profile-indicator-button:hover {
+    background-color: var(--color-hover-bg); 
+}
+
+/* Avatar petit dins del botó de la barra de navegació */
+.profile-indicator-avatar {
+    width: 32px; /* AJUSTADO: Reducido de 40px */
+    height: 32px; 
+    border-radius: 50%; 
+    background-color: var(--color-primary); 
+    color: var(--color-text-light); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 0.85rem; 
+}
+
+/* -------------------------------------- */
+/* 2. Menú Desplegable (Dropdown) */
+/* -------------------------------------- */
+
+.profile-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    z-index: 1000;
+    background-color: var(--color-header-bg); 
+    border: 1px solid var(--color-separator); 
+    border-radius: 8px;
+    min-width: 200px; /* AJUSTADO: Reducido de 250px */
+    max-width: 240px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 5px 0; 
+    display: flex;
+    flex-direction: column;
+    color: var(--color-text-dark); 
+    transition: background-color 0.3s;
+}
+
+/* Capçalera amb la informació de l'usuari */
+.profile-dropdown-header {
+    padding: 8px 15px; 
+    text-align: center;
+    border-bottom: 1px solid var(--color-separator); 
+    margin-bottom: 5px;
+}
+
+.profile-dropdown-header p {
+    margin: 0 0 2px 0;
+}
+
+.profile-dropdown-header .user-name {
+    font-weight: bold;
+    color: var(--color-text-dark); 
+    font-size: 0.95rem; 
+}
+.profile-dropdown-header p:last-child {
+    color: var(--color-text-dark); 
+    opacity: 0.7;
+    font-size: 0.8rem; 
+}
+
+
+/* Avatar gran dins de la capçalera del menú */
+.profile-dropdown-avatar {
+    width: 40px; /* AJUSTADO: Reducido de 50px */
+    height: 40px; 
+    border-radius: 50%; 
+    background-color: var(--color-secondary); 
+    color: var(--color-text-light); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 0 auto 5px auto;
+    font-size: 1rem; 
+}
+
+/* Enllaços i botons dins del menú */
+.dropdown-item {
+    padding: 8px 15px; /* AJUSTADO: Compacto */
+    text-decoration: none;
+    color: var(--color-text-dark); 
+    display: block;
+    font-size: 0.85rem; 
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.15s ease;
+    background: none;
+    border: none;
+}
+
+.dropdown-item:hover {
+    background-color: var(--color-hover-bg); 
+    color: var(--color-primary);
+}
+
+/* Estil per al botó de tancar sessió */
+.dropdown-item.logout-button {
+    color: var(--color-logout-text); 
+    font-weight: bold;
+}
+
+.dropdown-item.logout-button:hover {
+    background-color: var(--color-logout-hover-bg); 
+    color: var(--color-logout-hover-text);
+    text-decoration: underline;
+}
+
+/* Separador */
+.dropdown-separator { 
+    margin: 5px 0; 
+    border-top: 1px solid var(--color-separator); 
+}
+
+
+/* --- LAYOUT GLOBAL (GRID) --- */
+.edit-profile-container {
+    max-width: 1000px; /* AJUSTADO: Reducido de 1200px */
+    margin: 0 auto;
+    width: 95%; 
+    margin-top: 60px; /* AJUSTADO: Reducido de 100px */
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px; 
+}
+
+/* Modal Close Button */
+.modal-close- {
+    position: absolute;
+    top: 10px;
+    right: 10px; /* AJUSTADO: Pegado a la esquina */
+    width: 32px; 
+    height: 32px;
+    border-radius: 25px;
+    background-color: var(--color-header-bg); 
+    border: 1px solid var(--color-separator); 
+    color: var(--color-text-dark); 
+    opacity: 0.7;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.modal-close-:hover {
+    background-color: #fef2f2; 
+    color: #ef4444;
+    border-color: #fecaca;
+}
+body.dark-mode .modal-close-:hover {
+    background-color: #3b2023; 
+    color: #ff7881;
+    border-color: #3b2023;
+}
+
+/* En pantallas grandes (Desktop), usamos 2 columnas */
+@media (min-width: 992px) {
+    .profile-grid {
+        grid-template-columns: 280px 1fr; /* AJUSTADO: Sidebar más estrecha */
+        align-items: start;
+    }
+}
+
+/* --- TABS NAVIGATION (MEJORADO) --- */
+.tabs-navigation {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid var(--color-separator); 
+    margin-bottom: 20px; 
+    padding-top: 0;
+    overflow-x: auto; 
+    background-color: transparent; 
+    border-radius: 0;
+    box-shadow: none;
+    width: 100%;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 8px 15px; /* AJUSTADO: Compacto */
+    font-size: 0.9rem; 
+    font-weight: 600;
+    color: var(--color-text-dark); 
+    opacity: 0.7;
+    cursor: pointer;
+    transition: color 0.2s, border-bottom 0.2s;
+    border-bottom: 3px solid transparent; 
+    white-space: nowrap; 
+    margin-right: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.tab-button:hover:not(.active) {
+    color: var(--color-primary); 
+    opacity: 0.8;
+    background-color: transparent; 
+}
+
+.tab-button.active {
+    color: var(--color-primary); 
+    border-bottom: 3px solid var(--color-primary); 
+    background-color: transparent; 
+    opacity: 1;
+}
+
+/* Contenidor del contingut de les pestanyes */
+.tab-content {
+    min-height: 250px; 
+    margin-top: 0; 
+    padding-top: 0;
+}
+/* Forcem el contenidor principal del contingut a tenir padding lateral per la barra de navegació */
+.profile-main-column {
+    padding-top: 0;
+}
+
+/* --- TARJETAS (CARDS) --- */
+.profile-card {
+    background: var(--color-header-bg); 
+    border-radius: 12px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+    padding: 20px; /* AJUSTADO: Reducido de 24px */
+    margin-bottom: 0;
+    border: 1px solid var(--color-separator); 
+    height: fit-content;
+    transition: background-color 0.3s;
+}
+
+.profile-card-header {
+    margin-bottom: 15px; 
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-separator); /* AJUSTADO: Borde más fino */
+}
+
+.profile-card-title {
+    font-size: 1.1rem; 
+    font-weight: 700;
+    color: var(--color-text-dark); 
+    margin: 0;
+}
+
+/* --- COLUMNA IZQUIERDA (SIDEBAR) --- */
+.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+/* Avatar y Resumen */
+.avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.avatar-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--color-header-bg); 
+    box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-bottom: 10px; 
+}
+
+.user-name-display {
+    font-size: 1.1rem; 
+    font-weight: bold;
+    color: var(--color-text-dark); 
+    margin: 4px 0;
+}
+
+/* MEJORA VISUAL DEL ROL */
+.role-badge {
+    background-color: var(--color-primary); 
+    opacity: 1; 
+    color: white; 
+    padding: 3px 10px; 
+    border-radius: 20px;
+    font-size: 0.8rem; 
+    font-weight: 700; 
+    display: inline-block;
+    margin-bottom: 6px;
+    box-shadow: 0 2px 5px rgba(137, 176, 174, 0.4); 
+    letter-spacing: 0.5px;
+}
+/* Adaptación para dark mode */
+body.dark-mode .role-badge {
+    color: var(--color-text-dark); 
+    background-color: var(--color-secondary);
+}
+
+
+.member-since {
+    font-size: 0.8rem; 
+    color: var(--color-text-dark); 
+    opacity: 0.6;
+}
+
+/* --- FORMULARIOS --- */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px; 
+}
+
+/* Estilos extraídos del TSX */
+.form-grid-2-col .form-group.full-width {
+    grid-column: span 2;
+}
+
+.form-group {
+    width: 100%; 
+}
+
+.form-group.bio-container {
+    margin-top: 15px; 
+    width: 96%;
+}
+
+@media (min-width: 768px) {
+    .form-grid-2-col {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px; 
+    font-weight: 500;
+    color: var(--color-secondary); 
+    font-size: 0.85rem; 
+    
+}
+
+.input-field, .bio-textarea, .select-field {
+    width: 100%;
+    padding: 8px 12px; /* AJUSTADO: Compacto */
+    border: 1px solid var(--color-separator); 
+    border-radius: 6px; 
+    font-size: 0.9rem; 
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: var(--color-header-bg); 
+    color: var(--color-text-dark); 
+}
+
+.input-field:focus, .bio-textarea:focus, .select-field:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(137, 176, 174, 0.2); 
+}
+
+.input-readonly {
+    background-color: var(--color-background); 
+    color: var(--color-text-dark); 
+    opacity: 0.6;
+    cursor: not-allowed;
+    border-color: var(--color-separator);
+}
+
+/* --- BOTONES (Mantienen su color principal) --- */
+.btn-primary {
+    width: 100%;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 10px; /* AJUSTADO: Compacto */
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+    font-size: 0.95rem; 
+    margin: 3px;
+}
+
+.btn-primary:hover {
+    background-color: #6C9290; 
+}
+
+.btn-primary:disabled {
+    background-color: #cbd5e1;
+    cursor: wait;
+}
+
+.btn-secondary {
+    background-color: var(--color-secondary);
+}
+
+.btn-secondary:hover {
+    background-color: #2c3e50;
+}
+
+/* Botón de peligro genérico para modales */
+.btn-danger {
+    background-color: #e74c3c; 
+    color: white;
+}
+.btn-danger:hover {
+    background-color: #c0392b; 
+}
+
+#btn-adopcion {
+  display: flex;
+  flex-direction: row !important; /* Mantiene los botones en fila */
+  align-items: center;
+  gap: 10px; 
+  width: 100%;
+}
+
+/* Estilos compartidos para el enlace (Ver contrato) y el botón (Eliminar) */
+#btn-adopcion > a,
+#btn-adopcion > button {
+  flex: 1;                 /* Ambos ocupan el 50% del ancho */
+  margin: 0;
+  display: flex;           /* Activamos Flexbox DENTRO del botón */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center;     /* Centra el contenido verticalmente */
+  text-align: center;      
+  gap: 8px;                /* Espacio entre el icono y el texto */
+}
+
+/* --- ZONA DE PELIGRO --- */
+.danger-card {
+    border: 1px solid var(--color-logout-text); 
+    background: var(--color-header-bg); 
+    border-radius: 12px; 
+}
+
+.danger-header {
+    background-color: #ef9a9a; 
+    margin: -20px -20px 15px -20px; /* AJUSTADO al padding de la card */
+    padding: 12px 20px; 
+    border-bottom: 1px solid #e53935;
+    border-radius: 12px 12px 0 0;
+    color: #b71c1c; 
+    font-weight: bold;
+    font-size: 0.95rem; 
+}
+body.dark-mode .danger-header {
+    background-color: #3b2023; 
+    border-bottom: 1px solid #991b1b;
+    color: #ff7881;
+}
+
+.btn-danger-outline {
+    width: 100%;
+    background: var(--color-header-bg);
+    border: 2px solid #e53935;
+    color: #e53935;
+    padding: 10px; 
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem; 
+}
+
+.btn-danger-outline:hover {
+    background: #e53935;
+    color: white;
+    box-shadow: 0 4px 8px rgba(229, 57, 53, 0.3);
+}
+
+/* --- MODAL --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+}
+
+.modal-box {
+    background: var(--color-header-bg); 
+    padding: 25px; 
+    border-radius: 12px;
+    width: 90%;
+    max-width: 380px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.modal-box h3 {
+    color: var(--color-text-dark);
+    font-size: 1.05rem; 
+}
+.modal-box .modal-title-danger {
+    color: #c0392b; 
+}
+
+
+.modal-actions {
+    display: flex;
+    gap: 12px; 
+    margin-top: 20px;
+    justify-content: center;
+}
+
+/* --- ESTILOS PARA LA PESTAÑA DE CITAS --- */
+
+.appointments-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; 
+}
+
+.appointments-content {
+    min-height: 150px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px;
+}
+
+
+.appointment-card {
+    display: flex;
+    gap: 12px; 
+    align-items: center;
+    background: var(--color-background); 
+    border: 1px solid var(--color-separator);
+    padding: 12px; 
+    border-radius: 8px; 
+    transition: box-shadow 0.2s;
+}
+
+.appointment-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.appointment-header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.appointment-icon {
+    flex-shrink: 0;
+    width: 36px; 
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--color-primary); 
+    color: white;
+    font-size: 1rem; 
+}
+
+.appointment-title-group h4 {
+    margin: 0;
+    font-size: 1rem; 
+    color: var(--color-secondary);
+}
+
+.appointment-status {
+    font-size: 0.8rem; 
+    font-weight: 600;
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 12px;
+    margin-top: 2px;
+}
+
+.appointment-details {
+    flex-grow: 1;
+}
+
+.appointment-details strong {
+    font-weight: 700;
+    color: var(--color-text-dark);
+    font-size: 0.9rem; 
+}
+
+.appointment-details p {
+    margin: 2px 0;
+    font-size: 0.85rem; 
+    color: var(--color-text-dark);
+    opacity: 0.8;
+}
+
+.appointment-status-badge {
+    flex-shrink: 0;
+    padding: 4px 8px; 
+    border-radius: 20px;
+    font-size: 0.75rem; 
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Clases específicas para cada estado */
+.status-confirmed { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.status-pending { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+.status-completed { background-color: #cce5ff; color: #004085; border: 1px solid #b8daff; }
+.status-rejected, .status-cancelled { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+.status-queue { background-color: #ebf5ff; color: #3c763d; border: 1px solid #bce8f1; } 
+
+body.dark-mode .status-confirmed { background-color: #1e3c24; color: #71dd8b; border: 1px solid #3c6e43; }
+body.dark-mode .status-pending { background-color: #4b3c0e; color: #ffeb95; border: 1px solid #6b5c2a; }
+body.dark-mode .status-completed { background-color: #20354e; color: #a4cfff; border: 1px solid #3f5f7f; }
+body.dark-mode .status-rejected, body.dark-mode .status-cancelled { background-color: #4e2025; color: #ff98a1; border: 1px solid #7f3f4a; }
+body.dark-mode .status-queue { background-color: #2a3d4f; color: #a4cfff; border: 1px solid #3f5f7f; }
+
+.appointment-card p.pet-shelter-info {
+    margin: 0;
+    font-weight: 500;
+    color: var(--color-text-dark);
+}
+
+/* --- BOTONES DE ACCIÓN DE CITAS --- */
+.appointment-actions {
+    margin-top: 8px; 
+    display: flex; 
+    gap: 8px;
+}
+
+.appointment-actions button {
+    padding: 5px 10px; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 0.85rem; 
+    font-weight: 600;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+.appointment-actions button:nth-child(1) { background: #27ae60; }
+.appointment-actions button:nth-child(1):hover { background: #1e8449; }
+
+.appointment-actions button:nth-child(2) { background: #e74c3c; }
+.appointment-actions button:nth-child(2):hover { background: #c0392b; }
+
+
+/* --- BOTÓN DE ELIMINAR CITA --- */
+.btn-delete-appointment {
+    background: transparent;
+    border: none;
+    color: #e53935; 
+    cursor: pointer;
+    padding: 6px; 
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    margin-left: 8px;
+    opacity: 0.7;
+}
+
+.btn-delete-appointment:hover {
+    background-color: #ffebee; 
+    color: #d32f2f; 
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+body.dark-mode .btn-delete-appointment:hover {
+    background-color: #4a1f1f;
+}
+
+/* --- LOADER DE CITAS (Huellas) --- */
+@keyframes paw-bounce {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-5px) scale(1.05); opacity: 0.8; }
+}
+
+.appointments-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px; 
+    text-align: center;
+}
+
+.paw-prints-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; 
+    margin-bottom: 10px;
+}
+
+.loading-paw {
+    width: 24px; 
+    height: 24px;
+    color: var(--color-primary);
+    animation: paw-bounce 1.2s infinite ease-in-out;
+}
+
+.paw-prints-loader .loading-paw:nth-child(1) { animation-delay: 0s; }
+.paw-prints-loader .loading-paw:nth-child(2) { animation-delay: 0.2s; }
+.paw-prints-loader .loading-paw:nth-child(3) { animation-delay: 0.4s; }
+.paw-prints-loader .loading-paw:nth-child(4) { animation-delay: 0.6s; }
+.paw-prints-loader .loading-paw:nth-child(5) { animation-delay: 0.8s; }
+
+.loading-text-appointment {
+    font-size: 1rem; 
+    font-weight: 600;
+    color: var(--color-secondary);
+}
+
+/* --- MENSAJES DE FORMULARIO --- */
+.form-message {
+    margin-bottom: 15px; 
+    padding: 10px; 
+    border-radius: 8px;
+    opacity: 1;
+    max-height: 100px; 
+    transition: opacity 0.5s ease-out, max-height 0.5s ease-out, padding 0.5s ease-out, margin 0.5s ease-out;
+    font-size: 0.9rem; 
+}
+
+@keyframes fadeOutAndCollapse {
+    0% { opacity: 1; max-height: 100px; padding: 10px; margin-bottom: 15px; }
+    99% { opacity: 0; max-height: 0; padding: 0 10px; margin-bottom: 0; }
+    100% { opacity: 0; max-height: 0; padding: 0; margin-bottom: 0; display: none; }
+}
+
+.form-message.show-notification { opacity: 1; max-height: 100px; padding: 10px; }
+.form-message.hide-notification { animation: fadeOutAndCollapse 0.5s forwards; }
+
+/* ================================================= */
+/* --- ESTILOS ESPECÍFICOS PARA EL ACORDEÓN DE CITAS --- */
+/* ================================================= */
+
+.accordion-pet-group {
+    border: 1px solid var(--color-separator);
+    border-radius: 8px; 
+    margin-bottom: 12px; 
+    overflow: hidden;
+    background-color: var(--color-header-bg);
+    transition: box-shadow 0.3s ease;
+}
+
+.accordion-pet-group:hover {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px; 
+    background-color: var(--color-background); 
+    cursor: pointer;
+    transition: background-color 0.2s, border-bottom 0.3s;
+    border-bottom: 1px solid transparent;
+}
+
+.accordion-pet-group.is-open .accordion-header {
+    border-bottom: 1px solid var(--color-separator); 
+    background-color: var(--color-hover-bg);
+}
+
+.accordion-header:hover {
+    background-color: var(--color-hover-bg);
+}
+
+.accordion-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem; 
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin: 0;
+}
+
+.accordion-icon {
+    width: 18px; 
+    height: 18px;
+    color: var(--color-primary);
+}
+
+.pet-status-badge {
+    padding: 3px 8px; 
+    border-radius: 20px;
+    font-size: 0.7rem; 
+    font-weight: 600;
+    margin-left: 8px;
+    text-transform: uppercase;
+}
+
+.pet-status-badge.status-reserved { background-color: #fcd34d; color: #92400E; }
+.pet-status-badge.status-available { background-color: #d4edda; color: #155724; }
+
+.accordion-toggle-icon {
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    transition: transform 0.3s ease;
+}
+
+.accordion-pet-group.is-open .accordion-toggle-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+    padding: 0 15px;
+}
+
+.accordion-pet-group.is-open .accordion-content {
+    max-height: 1000px; 
+    padding: 15px; 
+}
+
+/* --- SECCIONES DENTRO DEL CONTENIDO --- */
+
+.reservation-section {
+    padding: 12px; 
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.reservation-section h5 {
+    font-size: 0.9rem; 
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+}
+
+.bg-reserved { background-color: #fef9e7; border: 1px solid #fcd34d; }
+.bg-pending { background-color: #e6f7ff; border: 1px solid #99d6ff; }
+body.dark-mode .bg-reserved { background-color: #493902; border-color: #D97706; }
+body.dark-mode .bg-pending { background-color: #1e2a38; border-color: #2c5478; }
+
+
+/* Tarjeta de Adoptante Principal */
+.adopter-info-card {
+    border: 1px dashed var(--color-separator);
+    padding: 12px; 
+    border-radius: 8px;
+    background-color: var(--color-background);
+}
+.adopter-info-card p {
+    margin: 4px 0;
+    font-size: 0.9rem; 
+}
+.adopter-name {
+    font-size: 1rem !important; 
+    color: var(--color-secondary);
+}
+
+/* Botones de acción del adoptante principal */
+.adopter-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.btn-confirm, .btn-reject {
+    padding: 6px 12px; 
+    border-radius: 6px;
+    font-weight: 600;
+    flex-grow: 1;
+    font-size: 0.85rem; 
+}
+.btn-confirm { background-color: #27ae60; color: white; border: none; }
+.btn-confirm:hover { background-color: #1e8449; }
+.btn-reject { background-color: #e74c3c; color: white; border: none; }
+.btn-reject:hover { background-color: #c0392b; }
+
+/* --- ESTILOS DE COLA --- */
+
+.queue-section {
+    margin-top: 15px;
+    border-top: 1px dashed var(--color-separator);
+    padding-top: 15px;
+}
+
+.queue-section h5 { color: var(--color-primary); font-size: 0.9rem; }
+
+.queue-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+}
+
+.queue-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-background);
+    padding: 8px; 
+    border-radius: 6px;
+    border: 1px solid var(--color-separator);
+}
+
+.queue-number {
+    font-size: 1rem; 
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-right: 10px;
+    width: 25px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.queue-adopter-details {
+    flex-grow: 1;
+}
+
+.queue-adopter-details strong {
+    display: block;
+    font-size: 0.9rem; 
+}
+
+.queue-adopter-details small {
+    color: var(--color-text-dark);
+    opacity: 0.7;
+    font-size: 0.8rem; 
+}
+
+.avatar-img{
+    width: 100px; /* AJUSTADO: Reducido */
+    height: 100px;
+    border-radius: 50%;
+}
+
+.btn-small {
+    padding: 4px 8px !important; 
+    font-size: 0.75rem !important; 
+    max-width: 100px;
+    flex-shrink: 0;
+    margin-left: 8px;
+    background-color: #95a5a6; 
+    color: white !important;
+}
+
+.btn-small:hover { background-color: #7f8c8d; }
+
+.no-active-requests {
+    font-style: italic;
+    color: var(--color-text-dark);
+    opacity: 0.7;
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9rem;
+}
+
+/* --- ESTILOS NUEVOS PARA NOTIFICACIONES --- */
+
+.sub-nav-container {
+    display: flex;
+    background-color: var(--color-background);
+    border-radius: 25px;
+    padding: 4px;
+    width: fit-content;
+    margin: 0 auto 20px auto;
+}
+
+.sub-nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 24px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background: transparent;
+    color: var(--color-text-dark);
+    opacity: 0.7;
+}
+
+.sub-nav-btn.active-whatsapp {
+    background-color: #25D366;
+    color: white;
+    opacity: 1;
+}
+
+.sub-nav-btn.active-email {
+    background-color: #EA4335;
+    color: white;
+    opacity: 1;
+}
+
+/* Cards de Configuración (Whatsapp/Email) */
+.settings-container {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.notification-section-card {
+    background-color: var(--color-background);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--color-separator);
+    margin-bottom: 20px;
+}
+
+.notification-section-title {
+    margin: 0 0 10px 0;
+    color: var(--color-text-dark);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.notification-text {
+    font-size: 0.9rem;
+    color: var(--color-text-dark);
+    opacity: 0.8;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* Card específica de Email (Rojo suave en light, oscuro en dark) */
+.email-warning-card {
+    background-color: #fff0f0;
+    border: 1px solid #ffcccc;
+}
+.email-warning-card .notification-section-title { color: #c62828; }
+.email-warning-card .notification-text { color: #555; }
+
+body.dark-mode .email-warning-card {
+    background-color: #3e1a1a;
+    border-color: #5c2b2b;
+}
+body.dark-mode .email-warning-card .notification-section-title { color: #ff8a80; }
+body.dark-mode .email-warning-card .notification-text { color: #ddd; }
+
+
+/* Toggle Card */
+.notification-toggle-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: var(--color-header-bg);
+    border-radius: 8px;
+    border: 1px solid var(--color-separator);
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.toggle-info h5 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+}
+
+.toggle-info p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-text-dark);
+    opacity: 0.7;
+}
+
+/* Switch Styles */
+.switch-wrapper {
+    position: relative;
+    width: 40px;
+    height: 24px;
+}
+
+.switch-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch-label {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: .4s;
+}
+
+body.dark-mode .switch-label {
+    background-color: #555;
+}
+
+.switch-input:checked + .switch-label {
+    background-color: var(--color-primary);
+}
+
+.switch-slider {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+.switch-input:checked + .switch-label .switch-slider {
+    transform: translateX(16px);
+}
+
+/* Responsividad para el Acordeón */
+@media (max-width: 600px) {
+    .accordion-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .accordion-title { font-size: 0.95rem; }
+    .pet-status-badge { margin-left: 0; }
+    .adopter-actions { flex-direction: column; }
+    .queue-item { flex-wrap: wrap; }
+    .btn-reject.btn-small { margin-top: 5px; width: 100%; max-width: none; }
+}
+
+/* --- BOTONES DE ACCIÓN DEL FORMULARIO DE ADOPCIÓN --- */
+
+/* Contenedor: Centra los botones */
+.adoption-form-actions {
+    display: flex;
+    justify-content: center; /* Alineación al centro */
+    gap: 15px;               /* Separación entre botones */
+    margin-top: 20px;
+    padding-top: 10px;
+    width: 100%;
+}
+
+/* Estilos base para ambos botones */
+.adoption-form-actions button {
+    padding: 6px 16px;      /* ANTES: 10px 25px (Ahora es más bajito y menos ancho) */
+    font-size: 0.9rem;      /* ANTES: 1rem (Letra un poco más chica) */
+    border-radius: 6px;     /* Reducimos un poco el radio para que encaje mejor */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+/* Botón Cancelar (Rojo estilo borde o suave) */
+.btn-cancel-custom {
+    background-color: transparent;
+    border: 2px solid #e74c3c !important; /* Borde rojo */
+    color: #e74c3c;
+}
+
+.btn-cancel-custom:hover {
+    background-color: #e74c3c;
+    color: white; /* Al pasar el mouse se vuelve rojo sólido */
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.2);
+}
+
+/* Botón Confirmar (Azul sólido) */
+.btn-confirm-custom {
+    background-color: #3498db; /* Azul */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-confirm-custom:hover {
+    background-color: #2980b9; /* Azul más oscuro */
+    transform: translateY(-2px); /* Efecto de elevación */
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* Estado deshabilitado (Cargando) */
+.btn-confirm-custom:disabled {
+    background-color: #95a5a6;
+    cursor: wait;
+    transform: none;
+    box-shadow: none;
+}
+
+
+
+/* --- CORRECCIÓN TEXTO MODALES (MODO CLARO/OSCURO) --- */
+
+/* Aplicamos esto tanto a la clase específica .danger-text como a cualquier párrafo <p> dentro de .modal-box */
+.danger-text,
+.modal-box p {
+    color: #949daa; /* Gris oscuro para que se lea en fondo blanco (Modo Claro) */
+    font-size: 0.99rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+body.dark-mode .danger-text {
+    color: #e5e7eb; /* Blanco suave para fondo oscuro */
+}

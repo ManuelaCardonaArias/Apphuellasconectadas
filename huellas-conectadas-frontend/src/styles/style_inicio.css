@@ -1,0 +1,347 @@
+/* -------------------------------------------
+ * Estilos de la Página de Inicio (style_inicio.css)
+ * Diseño V3 - Unificado con About Us (Glassmorphism Global)
+ * ------------------------------------------- */
+
+/* --- CONTENEDOR PRINCIPAL (Igual que .about-page-wrapper) --- */
+.home-content {
+    /* Forzar ancho completo */
+    width: 100%;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+
+    min-height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: var(--font-family-primary, sans-serif);
+    color: var(--color-text-dark);
+    overflow-x: hidden; /* Previene scroll horizontal accidental */
+
+    /* IMAGEN DE FONDO GLOBAL (Consistente con About Us) */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('../img/Welcome.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Parallax */
+}
+
+/* Modo oscuro para el wrapper */
+body.dark-mode .home-content {
+    background-image: linear-gradient(rgba(17, 24, 39, 0.9), rgba(17, 24, 39, 0.9)), url('../img/Welcome.jpg');
+    color: #f3f4f6;
+}
+
+/* --- SECCIÓN HERO (Adaptada al estilo About Us) --- */
+.welcome-section {
+    width: 95%;
+    max-width: 1100px;
+    min-height: 80vh; /* Alto para la portada */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+}
+
+/* El contenido del Hero ahora es una "Tarjeta de Cristal" */
+.hero-content {
+    text-align: center;
+    padding: 60px 40px;
+    max-width: 900px;
+}
+
+body.dark-mode .hero-content {
+    background: var(--glass-bg-dark);
+    border-color: var(--glass-border-dark);
+}
+
+.welcome-section h1 {
+    font-size: 3.5rem;
+    color: var(--color-text-dark); /* Texto oscuro porque el fondo es blanco transparente */
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+body.dark-mode .welcome-section h1 { color: #f3f4f6; }
+
+.text-hero {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    color: var(--color-text-medium);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+body.dark-mode .text-hero { color: #d1d5db; }
+
+/* --- BOTONES CTA (Estilo About Us) --- */
+.cta-group {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.big-cta {
+    padding: 14px 35px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.primary-cta {
+    background-color: var(--color-primary);
+    color: white;
+    border: 2px solid var(--color-primary);
+}
+
+.secondary-cta {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+body.dark-mode .secondary-cta {
+    color: #f3f4f6;
+    border-color: #f3f4f6;
+}
+
+.big-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.primary-cta:hover {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+}
+
+.secondary-cta:hover {
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+.btn-icon { width: 20px; height: 20px; }
+
+
+/* --- SECCIÓN ESTADÍSTICAS (Estilo Impact Section) --- */
+.stats-section {
+    width: 95%;
+    max-width: 1100px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+    min-width: 150px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: var(--color-text-medium);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+body.dark-mode .stat-label { color: #d1d5db; }
+
+
+/* --- SECCIÓN MASCOTAS DESTACADAS --- */
+.featured-section {
+    width: 95%;
+    max-width: 1100px;
+    margin-bottom: 60px;
+    padding: 40px;
+}
+
+body.dark-mode .featured-section {
+    background: var(--glass-bg-dark);
+    border-color: var(--glass-border-dark);
+}
+
+.featured-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    color: var(--color-text-dark);
+    font-weight: 800;
+}
+
+body.dark-mode .featured-section h2 { color: #f3f4f6; }
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Tarjeta de Mascota (Similar a .value-card) */
+.featured-card {
+    background: rgba(255, 255, 255, 0.6); /* Un poco más opaco que el contenedor */
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+body.dark-mode .featured-card {
+    background: rgba(55, 65, 81, 0.6);
+    border-color: rgba(255,255,255,0.05);
+}
+
+.featured-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.img-wrapper {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.featured-card:hover img {
+    transform: scale(1.08);
+}
+
+.featured-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--color-primary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.featured-info {
+    padding: 25px;
+    text-align: center;
+}
+
+.featured-info h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.4rem;
+    color: var(--color-text-dark);
+    font-weight: 700;
+}
+
+.featured-info p {
+    margin: 0;
+    color: var(--color-text-medium);
+}
+
+body.dark-mode .featured-info h3 { color: #f3f4f6; }
+body.dark-mode .featured-info p { color: #d1d5db; }
+
+/* Loaders y mensajes vacíos */
+.loading-featured, .no-pets-msg {
+    text-align: center;
+    color: var(--color-text-medium);
+    padding: 20px;
+    width: 100%;
+}
+
+.spinner-mini {
+    margin: 0 auto 10px;
+    border: 3px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+    border-top: 3px solid var(--color-primary);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Botón Ver Todos */
+.view-all-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.text-link-bold {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.text-link-bold:hover {
+    background-color: rgba(var(--color-primary-rgb), 0.1); /* Asumiendo que existe RGB, sino usa hex con opacidad */
+    background-color: rgba(211, 84, 0, 0.1);
+}
+
+/* --- RESPONSIVIDAD (Igual que About Us) --- */
+@media (max-width: 768px) {
+    .home-content { padding-top: 20px; }
+    
+    .hero-content {
+        padding: 40px 20px;
+    }
+
+    .welcome-section h1 { font-size: 2.5rem; }
+    
+    .stats-section {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .cta-group {
+        flex-direction: column;
+    }
+    
+    .big-cta {
+        width: 100%;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+}

@@ -1,0 +1,174 @@
+/* -------------------------------------------
+ * Estilos del Menú Desplegable de Usuario
+ * Se integra con las variables de style_general.css
+ * MODO ULTRA COMPACTO
+ * ------------------------------------------- */
+
+/* Contenedor principal del ítem de perfil */
+.profile-dropdown-container {
+    position: relative; 
+    display: flex;
+    align-items: center;
+}
+
+/* Avatar circular en la barra de navegación */
+.profile-indicator-avatar {
+    background-color: var(--color-primary, #89B0AE);
+    color: var(--color-text-light, #ffffff);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    font-weight: bold;
+    font-size: 0.9rem; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin: 0;
+    width: 32px; /* AJUSTADO: Forzado para coincidir con edit-profile-styles */
+    height: 32px;
+}
+
+/* Nombre del usuario al lado del avatar */
+.user-indicator {
+    font-weight: 600;
+    color: var(--color-text-dark, #555B6E);
+    font-size: 0.85rem; 
+    line-height: 1; 
+}
+
+/* -------------------------------------------
+ * El Menú Desplegable (Dropdown)
+ * ------------------------------------------- */
+.profile-dropdown-menu {
+    display: flex;
+    flex-direction: column; /* Asegurado flex-direction */
+    position: absolute;
+    top: calc(100% + 5px); /* AJUSTADO: Más cerca */
+    right: 0;
+    width: 220px; /* AJUSTADO: Reducido de 260px */
+    background-color: var(--color-header-bg, #ffffff);
+    border-radius: 8px; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 10px; 
+    z-index: 2000;
+    border: 1px solid rgba(0,0,0,0.05);
+    animation: fadeIn 0.2s ease-out;
+}
+
+/* Triángulo decorativo superior (opcional - más pequeño) */
+.profile-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 15px;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    border-left: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(0,0,0,0.05);
+    background-color: var(--color-header-bg); /* Importante para cubrir */
+}
+
+/* Animación suave de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cabecera interna del menú (Avatar grande y nombre) */
+.profile-dropdown-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px; 
+    margin-bottom: 8px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.profile-dropdown-avatar {
+    width: 45px; /* AJUSTADO: Reducido de 60px */
+    height: 45px;
+    background-color: var(--color-secondary, #555B6E);
+    color: white;
+    font-size: 1.4rem; 
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px; 
+}
+
+.profile-dropdown-header .user-name {
+    font-weight: 800;
+    color: var(--color-text-dark, #555B6E);
+    margin: 0;
+    font-size: 0.95rem; 
+}
+
+.profile-dropdown-header p:last-child {
+    margin: 0;
+    font-size: 0.8rem; 
+    color: #888;
+}
+
+/* Estilos de los enlaces/botones del menú */
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 8px 10px; /* AJUSTADO: Compacto */
+    text-decoration: none;
+    color: var(--color-text-dark, #555B6E);
+    font-size: 0.85rem; 
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box; 
+}
+
+.dropdown-item:hover {
+    background-color: #f5f7fa;
+    color: var(--color-primary, #89B0AE);
+}
+
+.dropdown-separator {
+    height: 1px;
+    background-color: #eee;
+    margin: 5px 0; 
+}
+
+.logout-button {
+    color: #e63946; 
+    font-weight: 600;
+}
+
+.logout-button:hover {
+    background-color: #fff5f5;
+    color: #d32f2f;
+}
+
+/* -------------------------------------------
+ * Responsividad
+ * ------------------------------------------- */
+@media (max-width: 768px) {
+    .profile-dropdown-container {
+        width: 100%;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .profile-dropdown-menu {
+        right: 50%;
+        transform: translateX(50%); 
+        top: 110%;
+        width: 90%; 
+        max-width: 280px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translate(50%, -5px); }
+        to { opacity: 1; transform: translate(50%, 0); }
+    }
+}

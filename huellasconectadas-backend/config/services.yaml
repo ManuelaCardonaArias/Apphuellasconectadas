@@ -1,0 +1,32 @@
+parameters:
+    ruta_upload_mascotas: '%kernel.project_dir%/public/uploads/mascotas'
+    
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+# 🚀 SOLUCIÓN: Agregamos el "binding"
+        bind:
+            # 1. Mapeamos la variable $stripeSecretKey
+            $stripeSecretKey: '%env(STRIPE_SECRET_KEY)%'
+            # 2. Mapeamos la clave pública (si la necesitas en algún constructor)
+            $stripePublicKey: '%env(STRIPE_PUBLIC_KEY)%'
+    # makes classes in src/ available to be used as services
+    App\:
+        resource: '../src/'
+
+    # Servicio de Twilio
+    App\Service\TwilioService:
+        arguments:
+            $twilioSid: '%env(TWILIO_SID)%'
+            $twilioToken: '%env(TWILIO_TOKEN)%'
+            $twilioWhatsappFrom: '%env(TWILIO_WHATSAPP_FROM)%'
+            $logger: '@logger'
+
+    # Servicio de Paypal
+    App\Service\PayPalClient:
+        arguments:
+            $clientId: '%env(PAYPAL_CLIENT_ID)%'
+            $secret: '%env(PAYPAL_SECRET)%'
+            $env: '%env(PAYPAL_ENV)%'
